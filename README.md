@@ -1,2 +1,2 @@
-# lineBot-hands-on
+# LineBot-hands-on
 
