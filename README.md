@@ -1,4 +1,4 @@
-# webDesigner-cource
+# lineBot-course
 
 プログラミングサークルの2021新歓で使うリポジトリです。テーマは「自己紹介ページを作ろう！」です。
 
