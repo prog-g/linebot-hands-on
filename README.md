@@ -1,1 +1,2 @@
-# lineBot-course
+# lineBot-hands-on
+
