@@ -1,2 +1,2 @@
-# LineBot-hands-on
+# linebot-hands-on
 岐阜大学プログラミングサークル
