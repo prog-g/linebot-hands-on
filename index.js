@@ -10,7 +10,7 @@ const bot = new line.Client(config);
 
 // 占い結果を返す関数
 function fortuneTelling() {
-    const num = Math.floor(Math.random() * 10) + 1;
+    const num = Math.floor(Math.random() * 10);
 
     if (num === 0) {
         return "大吉ですo(^▽^)o"
