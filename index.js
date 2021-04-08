@@ -39,19 +39,16 @@ app.post("/webhook", line.middleware(config), (req, res) => {
     res.sendStatus(200);
 
     try {
-        // すべてのイベント処理のプロミスを格納する配列。
-        let events_processed = [];
         // イベントオブジェクトを順次処理。
         req.body.events.forEach((event) => {
             // この処理の対象をイベントタイプがメッセージで、かつ、テキストタイプだった場合に限定。
             if (event.type == "message" && event.message.type == "text"){
                 // ユーザーからのテキストメッセージが「占って」だった場合のみ反応。
                 if (event.message.text == "占って"){
-                    // replyMessage()で返信し、そのプロミスをevents_processedに追加。
-                    events_processed.push(bot.replyMessage(event.replyToken, {
+                    bot.replyMessage(event.replyToken, {
                         type: "text",
                         text: fortuneTelling()
-                    }));
+                    });
                 }
             }
         });
