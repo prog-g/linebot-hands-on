@@ -1,0 +1,23 @@
+{
+  "name": "linebot-course",
+  "version": "1.0.0",
+  "description": "プログラミングサークルの2021新歓で使うリポジトリです。テーマは「自己紹介ページを作ろう！」です。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prog-g/lineBot-course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prog-g/lineBot-course/issues"
+  },
+  "homepage": "https://github.com/prog-g/lineBot-course#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^2.0.0",
+    "express": "^4.17.1"
+  }
+}
