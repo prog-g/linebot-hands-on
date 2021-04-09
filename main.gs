@@ -1,13 +1,15 @@
-const ACCESS_TOKEN = '';//チャンネルアクセストークンを入れる
+//チャンネルアクセストークン(公開しちゃダメ)を入れる
+const ACCESS_TOKEN = '';
 
+//Postリクエストを受け取ると発火する関数
 function doPost(e) {
-  // WebHookで受信した応答用Token
+  // Webhookで送られてきた応答用のトークン
   const replyToken = JSON.parse(e.postData.contents).events[0].replyToken;
-  // ユーザーのメッセージを取得うらない
+  // ユーザーが送ったメッセージ
   const userMessage = JSON.parse(e.postData.contents).events[0].message.text;
-  // 応答メッセージ用のAPI URL
+  // 応答用のAPIのURL
   const url = 'https://api.line.me/v2/bot/message/reply';
-
+  //応答メッセージリクエストに必要な情報
   const options = {
     'headers': {
       'Content-Type': 'application/json',
@@ -18,7 +20,7 @@ function doPost(e) {
       'replyToken': replyToken,
       'messages': [{
         'type': 'text',
-        'text': 　"占いました！結果は"+lot()+"です！",
+        'text': '占いました！結果は' + lot() + 'です！',
       }],
     }),
   };
@@ -27,16 +29,18 @@ function doPost(e) {
   return ContentService.createTextOutput(JSON.stringify({ 'content': 'post ok' })).setMimeType(ContentService.MimeType.JSON);
 }
 
+//占って結果を返す関数
 function lot() {
   //0~99までのランダムな数字
   const num = Math.floor(Math.random() * 100);
+  //各運勢とその確率(%)
   const probability = {
-    "大吉": 23,
-    "中吉": 10,
-    "小吉": 13,
-    "吉": 24,
-    "末吉": 19,
-    "凶": 11
+    '大吉': 23,
+    '中吉': 10,
+    '小吉': 13,
+    '吉': 24,
+    '末吉': 19,
+    '凶': 11
   };
   let sum = 0;
   for (let key in probability) {
@@ -45,5 +49,5 @@ function lot() {
       return key;
     }
   }
-  return "大凶";
+  return '大凶';
 }
