@@ -3,12 +3,17 @@ const ACCESS_TOKEN = '';
 
 //Postリクエストを受け取ると発火する関数
 function doPost(e) {
-  // Webhookで送られてきた応答用のトークン
+  //Webhookで送られてきた応答用のトークン
   const replyToken = JSON.parse(e.postData.contents).events[0].replyToken;
-  // ユーザーが送ったメッセージ
+  //ユーザーが送ったメッセージ
   const userMessage = JSON.parse(e.postData.contents).events[0].message.text;
-  // 応答用のAPIのURL
+  //応答用のAPIのURL
   const url = 'https://api.line.me/v2/bot/message/reply';
+  //応答するメッセージ
+  let replyText = '';
+  if (userMessage === '占って') {
+    replyText = '占いました！結果は' + lot() + 'です。';
+  }
   //応答メッセージリクエストに必要な情報
   const options = {
     'headers': {
@@ -20,7 +25,7 @@ function doPost(e) {
       'replyToken': replyToken,
       'messages': [{
         'type': 'text',
-        'text': '占いました！結果は' + lot() + 'です！',
+        'text': replyText,
       }],
     }),
   };
