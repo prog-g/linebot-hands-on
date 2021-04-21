@@ -11,10 +11,12 @@ function doPost(e) {
   const url = 'https://api.line.me/v2/bot/message/reply';
   //応答するメッセージ
   //ここに応答メッセージをつくるプログラムを書いてみましょう！
-  
-  
-  
-  
+
+
+
+
+
+ 
   //応答メッセージリクエストに必要な情報
   const options = {
     'headers': {
@@ -30,15 +32,20 @@ function doPost(e) {
       }],
     }),
   };
-  // 応答メッセージをリクエスト
-  UrlFetchApp.fetch(url, options);
+  
+  try{
+    // 応答メッセージをリクエスト
+    UrlFetchApp.fetch(url, options);
+  }catch(e){
+    console.log(e.message);
+  }
   return ContentService.createTextOutput(JSON.stringify({ 'content': 'post ok' })).setMimeType(ContentService.MimeType.JSON);
 }
 
 //占って結果を返す関数
 function lot() {
   //0~99までのランダムな数字
-  const random_num = Math.floor(Math.random() * 100);
+  const num = Math.floor(Math.random() * 100);
   //各運勢とその確率(%)
   const probability = {
     '大吉': 23,
@@ -51,9 +58,41 @@ function lot() {
   let sum = 0;
   for (let key in probability) {
     sum += probability[key];
-    if (random_num < sum) {
+    if (num < sum) {
       return key;
     }
   }
   return '大凶';
+}
+
+//一連のプログラムがきちんと動くか確認する関数
+function test() {
+  const contents = {
+    destination: "xxxxxxxxxx",
+        events: [
+          {
+            replyToken: "0f3779fba3b349968c5d07db31eab56f",
+            type: "message",
+            mode: "active",
+            timestamp: 1462629479859,
+            source: {
+              type: "user",
+              userId: "U4af4980629..."
+            },
+            message: {
+              id: "325708",
+              type: "text",
+              text: "占って"
+            }
+          }
+        ]
+
+  }
+  const e = {
+    postData: {
+      contents: JSON.stringify(contents)
+    }
+  }
+  doPost(e);
+}
 }
