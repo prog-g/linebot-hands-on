@@ -39,7 +39,7 @@ function doPost(e) {
 //占って結果を返す関数
 function lot() {
   //0~99までのランダムな数字
-  const rand_num = Math.floor(Math.random() * 100);
+  const random_num = Math.floor(Math.random() * 100);
   //各運勢とその確率(%)
   const probability = {
     '大吉': 23,
@@ -52,7 +52,7 @@ function lot() {
   let sum = 0;
   for (let key in probability) {
     sum += probability[key];
-    if (rand_num < sum) {
+    if (random_num < sum) {
       return key;
     }
   }
