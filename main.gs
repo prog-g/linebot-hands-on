@@ -12,7 +12,7 @@ function doPost(e) {
   //応答するメッセージ
   //ここに応答メッセージをつくるプログラムを書いてみましょう！
   let replyText = '';
-  if (userMessage === '占って') {
+  if (userMessage === '占って' || userMessage === 'うらなって') {
     replyText = '占いました！結果は' + lot() + 'です。';
   } else {
     replyText = '「占って」と言ってみてください！';
@@ -32,7 +32,7 @@ function doPost(e) {
       }],
     }),
   };
-  
+  console.log("応答："+replyText);
   try{
     // 応答メッセージをリクエスト
     UrlFetchApp.fetch(url, options);
@@ -93,5 +93,5 @@ function test() {
       contents: JSON.stringify(contents)
     }
   }
-  doPost(e);
+  const result= doPost(e);
 }
