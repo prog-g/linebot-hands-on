@@ -13,6 +13,8 @@ function doPost(e) {
   let replyText = '';
   if (userMessage === '占って') {
     replyText = '占いました！結果は' + lot() + 'です。';
+  } else {
+    replyText = '「占って」と言ってみてください！';
   }
   //応答メッセージリクエストに必要な情報
   const options = {
