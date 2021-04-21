@@ -10,12 +10,11 @@ function doPost(e) {
   //応答用のAPIのURL
   const url = 'https://api.line.me/v2/bot/message/reply';
   //応答するメッセージ
-  let replyText = '';
-  if (userMessage === '占って') {
-    replyText = '占いました！結果は' + lot() + 'です。';
-  } else {
-    replyText = '「占って」と言ってみてください！';
-  }
+  //ここに応答メッセージをつくるプログラムを書いてみましょう！
+  
+  
+  
+  
   //応答メッセージリクエストに必要な情報
   const options = {
     'headers': {
