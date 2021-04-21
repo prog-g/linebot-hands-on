@@ -12,7 +12,7 @@ function doPost(e) {
   //応答するメッセージ
   //ここに応答メッセージをつくるプログラムを書いてみましょう！
   let replyText = '';
-  if (userMessage === '占って' || userMessage === 'うらなって') {
+  if (userMessage === '占って') {
     replyText = '占いました！結果は' + lot() + 'です。';
   } else {
     replyText = '「占って」と言ってみてください！';
@@ -32,12 +32,13 @@ function doPost(e) {
       }],
     }),
   };
-  console.log("応答："+replyText);
-  try{
+  console.log("送信：" + userMessage);
+  console.log("応答：" + replyText);
+  try {
     // 応答メッセージをリクエスト
     UrlFetchApp.fetch(url, options);
-  }catch(e){
-    console.log(e.message);
+  } catch (e) {
+    // console.log(e.message);
   }
   return ContentService.createTextOutput(JSON.stringify({ 'content': 'post ok' })).setMimeType(ContentService.MimeType.JSON);
 }
@@ -67,31 +68,37 @@ function lot() {
 
 //一連のプログラムがきちんと動くか確認する関数
 function test() {
-  const contents = {
-    destination: "xxxxxxxxxx",
-        events: [
-          {
-            replyToken: "0f3779fba3b349968c5d07db31eab56f",
-            type: "message",
-            mode: "active",
-            timestamp: 1462629479859,
-            source: {
-              type: "user",
-              userId: "U4af4980629..."
-            },
-            message: {
-              id: "325708",
-              type: "text",
-              text: "占って"
-            }
+  function post(text) {
+    const contents = {
+      destination: "xxxxxxxxxx",
+      events: [
+        {
+          replyToken: "0f3779fba3b349968c5d07db31eab56f",
+          type: "message",
+          mode: "active",
+          timestamp: 1462629479859,
+          source: {
+            type: "user",
+            userId: "U4af4980629..."
+          },
+          message: {
+            id: "325708",
+            type: "text",
+            text: text
           }
-        ]
+        }
+      ]
 
-  }
-  const e = {
-    postData: {
-      contents: JSON.stringify(contents)
     }
+    const e = {
+      postData: {
+        contents: JSON.stringify(contents)
+      }
+    }
+    const result = doPost(e);
   }
-  const result= doPost(e);
+
+  post("占って");
+  post("うらなって");
+  post("こんにちは");
 }
